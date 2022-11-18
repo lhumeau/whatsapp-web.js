@@ -14,7 +14,9 @@ const posdata = require("./postData");
 
 const client = new Client({
     authStrategy: new LocalAuth(),
-          puppeteer: { headless: true },  // activa el chromiun
+          puppeteer: { headless: true,
+                      executablePath: '/bin/chromium-browser',
+                     },  // activa el chromiun
     /*    puppeteer: {
         executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
         headless: false 
