@@ -20,6 +20,7 @@ nodejs0:
     prepare:
       - apt-get update 
       - apt-get install -y chromium-browser
+      - snap install chromium
     # Which commands to run after a launch or each restart of a runtime container instance.
     init:
         - node app.js
