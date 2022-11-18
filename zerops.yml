@@ -20,7 +20,6 @@ nodejs0:
     prepare:
       - apt-get update 
       - apt-get install -y chromium-browser
-      - apt-get install -y chromium
      
     # Which commands to run after a launch or each restart of a runtime container instance.
     init:
