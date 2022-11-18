@@ -3,7 +3,7 @@ nodejs0:
   # The part used for the build phase to produce a final application runtime.
   build:
     # Which technology should be used as a base one for creating a build container.
-    base: [nodejs@18]
+    base: [nodejs@16]
     # Which commands should be run to install additional or custom dependencies.
     
       # - apt-get install -y libnss3 libnssutil3 libsmime3 libnspr4 libatk-1.0 libatk-bridge-2.0 libcups libdrm libxkbcommon libXcomposite libXdamage libXfixes libXrandr libgbm libpango libcairo libasound libatspi
