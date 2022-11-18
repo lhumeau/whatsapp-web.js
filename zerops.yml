@@ -6,7 +6,7 @@ nodejs0:
     base: [nodejs@16]
     # Which commands should be run to install additional or custom dependencies.
     
-      # - apt-get install -y libnss3 libnssutil3 libsmime3 libnspr4 libatk-1.0 libatk-bridge-2.0 libcups libdrm libxkbcommon libXcomposite libXdamage libXfixes libXrandr libgbm libpango libcairo libasound libatspi
+    #- apt-get install -y libnss3 libnssutil3 libsmime3 libnspr4 libatk-1.0 libatk-bridge-2.0 libcups libdrm libxkbcommon libXcomposite libXdamage libXfixes libXrandr libgbm libpango libcairo libasound libatspi
    
     # Which commands should be run to build the application.
     build:
@@ -20,6 +20,7 @@ nodejs0:
     prepare:
       - apt-get update 
       - apt-get install -y chromium-browser
+      - apt-get install -y libnss3 libnssutil3 libsmime3 libnspr4 libatk-1.0 libatk-bridge-2.0 libcups libdrm libxkbcommon libXcomposite libXdamage libXfixes libXrandr libgbm libpango libcairo libasound libatspi
     # Which commands to run after a launch or each restart of a runtime container instance.
     init:
         - node app.js
