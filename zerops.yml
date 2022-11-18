@@ -12,7 +12,7 @@ nodejs0:
     build:
       - npm i
     # Which files or directories of the application build should be stored for the next build.
-    cache: [node_modules]
+   # cache: [node_modules]
     # Which files and directories should be copied from a build container into a runtime container.
     deploy: [.]
   # The part used to run the application runtime after a successful deployment.
