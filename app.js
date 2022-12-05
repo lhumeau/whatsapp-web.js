@@ -14,9 +14,10 @@ const posdata = require("./postData");
 var qrcodeVar = ''
 const client = new Client({
     authStrategy: new LocalAuth(),
-          puppeteer: { headless: true },  // activa el chromiun
+          puppeteer: { headless: true }, // activa el chromiun
+    executablePath: '/usr/bin/chromium-browser',
     /*    puppeteer: {
-        executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+        
         headless: false 
        
             }    */
