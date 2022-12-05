@@ -15,7 +15,7 @@ var qrcodeVar = ''
 const client = new Client({
     authStrategy: new LocalAuth(),
           puppeteer: { headless: true }, // activa el chromiun
-    executablePath: '/usr/bin/chromium-browser',
+    executablePath: '/bin/chromium-browser',
     /*    puppeteer: {
         
         headless: false 
