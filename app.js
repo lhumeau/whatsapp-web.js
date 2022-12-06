@@ -14,9 +14,7 @@ const posdata = require("./postData");
 var qrcodeVar = ''
 const client = new Client({
     authStrategy: new LocalAuth(),
-          puppeteer: { headless: true,
-                      args: ['--no-sandbox'],
-                              },  // activa el chromiun
+          puppeteer: { headless: true },  // activa el chromiun
     /*    puppeteer: {
         executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
         headless: false 
@@ -74,7 +72,10 @@ var regficha;
 var regOdometro;
 var regDataConfirm = "🚀Procesando los datos...";
 var startConversation = "Hola";
-var ficha2 = `❌Favor verificar su ficha nuevamente, asegurese de que su ficha cumpla con lo siguiente:  
+var ficha2 = `
+            *👀Lea atentamente lo que se le pide en cada opción y responda adecuadamente.👀*
+
+            ❌Favor verificar su ficha nuevamente, asegurese de que su ficha cumpla con lo siguiente:  
             - Formato VL-M43.
             - Que contenga guiones.
             - Que contenga 6 caracteres.
@@ -105,6 +106,7 @@ client.on("message_create", async (msg) => {
 
     var menu = `
 👷‍♀️👷‍♂️ Hola *${mensaje._data.notifyName}*,
+*Lea atentamente lo que se le pide en cada opción y responda adecuadamente.*
 
 Indique la opción a realizar:
 
@@ -116,9 +118,10 @@ Indique la opción a realizar:
     ;
     console.log("respuesta usuario", lastAnswerUser.length);
     console.log("respuesta Bot", lastAnswerBot.length);
-    // Fired on all message creations, including your own
-    if (mensaje.fromMe) {
-        // do stuff here
+    
+    if (mensaje.fromMe) // Determinar de remitente de mensaje.
+    {
+        
         if (lastAnswerBot.length === 0) 
         {          
             return client.sendMessage(msg.from, menu);
@@ -127,7 +130,11 @@ Indique la opción a realizar:
         if (lastAnswerBot[0].body == menu) {
             return console.log("Esperando respuesta bot desde el bot 1");
         } 
-    } else {
+    } 
+
+    else 
+    
+    {
       
        if (lastAnswerUser.length === 1 && lastAnswerBot.length === 0  ) 
         {
@@ -143,13 +150,13 @@ Indique la opción a realizar:
         }
         if (lastAnswerUser.length === 1 && lastAnswerBot.length === 1  ) {
            
-            console.log("Usuario Respondio");
+            console.log("Usuario Respondio en valor 1/1");
              
                    
         } 
         if (lastAnswerUser.length === 0 && lastAnswerBot.length === 0  ) {
            
-            console.log("Usuario Respondio");
+            console.log("Usuario Respondio en Valor 0/1");
             return client.sendMessage(msg.from, menu);
 
              
@@ -160,12 +167,7 @@ Indique la opción a realizar:
         if (lastAnswerUser.length === 0 && lastAnswerBot[0].body == ficha || lastAnswerUser.length === 0 && lastAnswerBot[0].body == ficha2 ) 
         {
             console.log(mensaje, 'Valoes de mensaje')
-          /*   while (lastAnswerUser.length === 0) {
-                lastAnswerUser = await accionar.getLastMessageFromUser(chatIdInfo);
-                console.log(lastAnswerUser.length,"Salida del While Esperando respuesta de usuario desde el bot else 2");
-                return  client.sendMessage(msg.from, lastAnswerBot[0].body);
-                                
-            } */
+    
             
             lastAnswerUser[0] = mensaje._data.body;
             lastAnswerBot[0].body = lastAnswerBot[1].body
@@ -182,67 +184,45 @@ Indique la opción a realizar:
                      
           
         } 
-        // Si nadie ha hablado y solamente habla el bot - Inicio de conversación
+        
 
-        if (lastAnswerUser.length === 0 && lastAnswerBot[0].body == menu ) 
+        if (lastAnswerUser.length === 0 && lastAnswerBot[0].body == menu ) // Si nadie ha hablado y solamente habla el bot - Inicio de conversación
         {
-            console.log(mensaje, 'Valoes de mensaje')
-          /*   while (lastAnswerUser.length === 0) {
-                lastAnswerUser = await accionar.getLastMessageFromUser(chatIdInfo);
-                console.log(lastAnswerUser.length,"Salida del While Esperando respuesta de usuario desde el bot else 2");
-                return  client.sendMessage(msg.from, lastAnswerBot[0].body);
-                                
-            } */
-            
+            console.log(mensaje, 'Valores de mensaje 0/0')
+                
             lastAnswerUser[0] = mensaje._data.body;
             lastAnswerBot[0].body = lastAnswerBot[1].body
             console.log(lastAnswerBot[0].body, "lastAnswerBot[0].body 0/2")
                      
           
         } 
-/*          if (lastAnswerUser.length === 0 ) 
-        {
-            console.log(mensaje, 'Valor de mensaje')
-            while (lastAnswerUser.length === 0) {
-                lastAnswerUser = await accionar.getLastMessageFromUser(chatIdInfo);
-                console.log(lastAnswerUser.length,"Salida del While Esperando respuesta de usuario desde el bot else 2");
-                return  client.sendMessage(msg.from, lastAnswerBot[0].body);
-                                
-            } 
-            
-            lastAnswerUser[0] = mensaje._data.body;
-                         
-          
-        }  
-   
- */
-            // Inicia de conversación con palabra Clave 
+
 
         if(mensaje._data.body == startConversation || mensaje._data.body == 'hola' || mensaje._data.body == 'klk' || mensaje._data.body == 'hola '
         || mensaje._data.body == 'Hola ' || mensaje._data.body == 'Hola'  || mensaje._data.body == 'HOLA' || mensaje._data.body == 'HOLA ' || mensaje._data.body == 'klk ' || mensaje._data.body == 'Klk' || mensaje._data.body == 'Klk '  )
         {
-         //   client.sendMessage(msg.from,`👷‍♂️ Hola ${mensaje._data.notifyName}, Esto es un bot de Whatsapp a continuación, elige la opción del menu deseada.`)
-
+     
             return  client.sendMessage(msg.from, menu);
 
    
         }
-            // Selección en el menu 
-        if (mensaje._data.body == option1R || mensaje._data.body == '1r' || mensaje._data.body == '1' && lastAnswerBot[0].body == menu  )
+            
+        if (mensaje._data.body == option1R || mensaje._data.body == '1r' || mensaje._data.body == '1' && lastAnswerBot[0].body == menu  ) // Selección en el menu 
              {
 
             return  client.sendMessage(msg.from, ficha);
             }
 
-            // Captura de respuesta de la  ficha  usuariop s
-        if (lastAnswerBot[0].body == ficha || lastAnswerBot[0].body == ficha2 ) 
+            
+        if (lastAnswerBot[0].body == ficha || lastAnswerBot[0].body == ficha2 ) // Captura respuesta de la  ficha  usuario
         {
-            console.log(mensaje._data.body, 'Valor de body en 0 ')
+            console.log(mensaje._data.body, 'Valor de body en 0/ficha2 ')
             
 
             regficha = mensaje._data.body;
             
-            if(/[a-zA-Z]/.test(regficha) == true && regficha.length == 6 && /[-]/.test(regficha) == true )
+             
+            if(/[a-zA-Z]/.test(regficha) == true && regficha.length == 6 && /[-]/.test(regficha) == true && /[0-9]/.test(regficha) == true  ) // validar condición de ficha 2
             {
                 regficha.toUpperCase();
                 regficha.trim();
@@ -252,18 +232,12 @@ Indique la opción a realizar:
                 return  client.sendMessage(msg.from, ficha2);
             }
                 
-/*             if(/[-]/.test(regficha) == false && regficha.length == 6)
-            {
-                    regficha = regficha.substr(0,2) + '-' + regficha.substr(2, 5)
-                    console.log(regficha)
-                   
-            }
- */
+
             return  client.sendMessage(msg.from, counter);
         }
 
-        /// Captura de respuesta de Odometro/Horometro de usuario.
-        if (lastAnswerBot[0].body == counter) 
+        
+        if (lastAnswerBot[0].body == counter)  /// Captura de respuesta de Odometro/Horometro de usuario.
              {
                 regOdometro = mensaje._data.body;
                 if(/[a-zA-Z]/.test(regOdometro))
@@ -297,7 +271,7 @@ Indique la opción a realizar:
                                              
 
                                                 
-                                } // JSON data parsed by `data.json()` call
+                                } 
                             });
 
               
