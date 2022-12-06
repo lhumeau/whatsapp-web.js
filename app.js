@@ -16,6 +16,8 @@ const client = new Client({
     authStrategy: new LocalAuth(),
           puppeteer: { headless: true,
                        executablePath: '/bin/chromium-browser',
+                       args: ['--no-sandbox'],
+                      
                      
                      },
           // activa el chromiun
