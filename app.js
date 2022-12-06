@@ -18,7 +18,7 @@ const client = new Client({
                        executablePath: '/bin/chromium-browser',
                      
                      },
-          ,// activa el chromiun
+          // activa el chromiun
     /*    puppeteer: {
         executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
         headless: false 
