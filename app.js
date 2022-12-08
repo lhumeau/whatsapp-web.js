@@ -221,7 +221,7 @@ Indique la opción a realizar:
                             `🛠 Cualquier inconveniente favor de enviarnos un ticket a *soporte@constructorarizek.com* o llamarnos al *_809-372-2680_* EXT: *_231_*.
                                     ✏ Escribe *Hola* para iniciar el *Bot*`
                         )
-                        .then(chatIdInfo.clearMessages());
+                        .then(chatIdInfo.delete());
                 }
             });
         }
