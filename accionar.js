@@ -1,70 +1,75 @@
-const { Client, Location, List, Buttons, LocalAuth, Chat } = require("./index");
-const client = new Client({
-    authStrategy: new LocalAuth(),
-});
-const chat = new Chat({});
+/* eslint-disable linebreak-style */
+const {   Chat } = require('./index');
+
+
 async function getLastMessageFromBot(chatId) {
     try {
-        let privatechat = new Chat();
-        const searchOptions = { limit: 2 };
-        privatechat =  chatId
-        const conversationMsgs =  await privatechat.fetchMessages(searchOptions);
-        let converts =  await conversationMsgs;
-        let asociar =  await converts.filter((convert) => convert.id.fromMe === true) 
-        asociar.length === 0 ?  'isEmpty' : asociar[0]._data.body
-        //let asociarBody =  await ((asociar[0]._data.body) = [] ? asociar[0]._data.body : 'isEmpty');
-        return asociar;
+        let asociar = [];
+        let privatechatFromBot;
+        privatechatFromBot = new Chat();
+        const searchOptions = {
+            limit: 2,
+            fromMe: true,
+        };
+        privatechatFromBot = chatId;
+        const conversationMsgsFromBot = await privatechatFromBot.fetchMessages(searchOptions);
+        asociar = conversationMsgsFromBot;
+        let LastTimeStampMessageNumber = Math.max.apply(Math, asociar.map(function (o) { return o.timestamp; }));
+        let lastMessagefromTimestamp = asociar.filter((x) => x.timestamp == LastTimeStampMessageNumber);
+             
+   
+        return  lastMessagefromTimestamp;
     } catch (e) {
-      return console.error(e);
+        return console.error(e);
     }
 }
 async function getLastMessageFromUser(chatId) {
-  try {
-    let privatechat = new Chat();
-    const searchOptions = { limit: 2 };
-    privatechat =  chatId
-    const conversationMsgs =  await privatechat.fetchMessages(searchOptions);
-    let converts =  await conversationMsgs;
-    let asociar =  await converts.filter((convert) => convert.id.fromMe === false) 
-    asociar.length === 0 ?  'isEmpty' : asociar[0]._data.body
-    //let asociarBody =  await ((asociar[0]._data.body) = [] ? asociar[0]._data.body : 'isEmpty');
-    return asociar;
-} catch (e) {
-  return console.error(e);
-}
+    try {
+        let asociar = [];
+        let privatechatFromUser = new Chat();
+        const searchOptions = {
+            fromMe: false,
+            limit: 2,
+        };
+        privatechatFromUser = chatId;
+        const conversationMsgsFromUser = await privatechatFromUser.fetchMessages(searchOptions);
+        asociar = conversationMsgsFromUser;
+        return  asociar;
+
+    } catch (e) {
+        return console.error(e);
+    }
 }
 async function deliveryMessageStatus(msg) {
     let estadoMensaje = await msg.getInfo();
-    while (estadoMensaje.deliveryRemaining != "0") {
+    while (estadoMensaje.deliveryRemaining != '0') {
         estadoMensaje = await msg.getInfo();
-        console.log("Mensaje no entregado");
+        console.log('Mensaje no entregado');
     }
     return true;
 }
 function isEmptyObject(obj) {
-  return Object.keys(obj).length === 0;
+    return Object.keys(obj).length === 0;
 }
 async function sanitizeNumber(msg) {
-  let chatId = msg.from;
-  let sanitized_number = chatId.toString().replace(/[- )(]/g, ""); // remove unnecessary chars from the number
-  let number = sanitized_number
-  return number
+    let chatId = msg.from;
+    let sanitized_number = chatId.toString().replace(/[- )(]/g, ''); // remove unnecessary chars from the number
+    let number = sanitized_number;
+    return number;
 }
-function storegetChatId(chatid){
-  return chatid
-}
-function timerDelay(ms){
-  var start = new Date().getTime();
-  var end = start;
-  while(end < start + ms) {
-    end = new Date().getTime();
- }
+
+function timerDelay(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+        end = new Date().getTime();
+    }
 }
 module.exports = {
     getLastMessageFromUser: getLastMessageFromUser,
     getLastMessageFromBot: getLastMessageFromBot,
     deliveryMessageStatus: deliveryMessageStatus,
-    isEmptyObject : isEmptyObject, 
+    isEmptyObject: isEmptyObject,
     sanitizeNumber: sanitizeNumber,
-    timerDelay:timerDelay,
+    timerDelay: timerDelay,
 };
