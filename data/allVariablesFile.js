@@ -105,6 +105,21 @@ var fixValidatorOdometer = `
 var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
 var storeChatIdValue;
 var chatIdInfo;
+var englineOilLevel = {
+    question: '¿Cual es el nivel de aceite del motor?',
+    options: [{ body: 'Alto', id: '0' },
+        { body: 'Bien', id: '1' },
+        { body: 'Medio', id: '2' },
+        { body: 'Bajo', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+
+};
+
+
+
+
+
 
 module.exports = {
     vehicleList,
@@ -127,4 +142,5 @@ module.exports = {
     initialWordsConversationData,
     getNameFromMessage,
     vehicleListSection,
+    englineOilLevel,
 };
