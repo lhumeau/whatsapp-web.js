@@ -2,6 +2,7 @@
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
 const { List } = require('../index');
 const enviroment = require('../utils/environment');
+const projectsJson = require('./projects.json');
 var messageIncoming;
 const getNameFromMessage = {
     notifyName: 'user',
@@ -54,7 +55,7 @@ var menuFormsOptions = `
 
 var vehicleList = [
     {
-        title: 'Secton title',
+        title: 'Section title',
         rows: [
             { title: 'ListItem1', description: 'desc' },
             { title: 'Try clicking me (id: test)', id: 'test' },
@@ -205,6 +206,29 @@ var fireExtinguisherState = {
     description: 'Seleccione una opción',
 };
 
+var ProjectListSection = [
+    {
+        title: 'Listado de fichas',
+        rows: projectsJson,
+    },
+];
+
+
+var ListProject = new List(
+    'Lista de proyectoss',
+    'Ver todos los proyectos',
+    ProjectListSection,
+    'Por favor seleccione un proyecto'
+);
+
+
+
+
+
+
+
+
+ 
 
 module.exports = {
     vehicleList,
@@ -228,4 +252,6 @@ module.exports = {
     getNameFromMessage,
     vehicleListSection,
     englineOilLevel,
+    ListProject,
+
 };
