@@ -116,9 +116,94 @@ var englineOilLevel = {
 
 };
 
+var oilTransmisionLevel = {
+    question: '¿Cual es el nivel de aceite del Transmision?',
+    options: [
+        { body: 'Alto', id: '0' },
+        { body: 'Bien', id: '1' },
+        { body: 'Medio', id: '2' },
+        { body: 'Bajo', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+};
+
+var oilCoolantLevel = {
+    question: '¿Cual es el nivel de coolant?',
+    options: [
+        { body: 'Alto', id: '0' },
+        { body: 'Bien', id: '1' },
+        { body: 'Medio', id: '2' },
+        { body: 'Bajo', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+};
+var strapsPhysicalState = {
+    question: '¿Cual es el Estado de las correas?',
+    options: [
+        { body: 'Buen Estado', id: '0' },
+        { body: 'Desgastadas', id: '1' },
+        { body: 'Rotas', id: '2' },
+    ],
+    description: 'Seleccione una opción',
+};
+var tiresState = {
+    question: '¿Cual es el Estado de las correas?',
+    options: [
+        { body: 'Buen Estado', id: '0' },
+        { body: 'Desgastadas', id: '1' },
+        { body: 'Rotas', id: '2' },
+    ],
+    description: 'Seleccione una opción',
+};
 
 
+var spareRubberState = {
+    question: '¿Cual es el Estado de la goma',
+    options: [
+        { body: 'Buen Estado', id: '0' },
+        { body: 'Desgastadas', id: '1' },
+        { body: 'Rota', id: '2' },
+        { body: 'No tiene', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+};
 
+var VehicleSwitchAndGauges = {
+    question: '¿Cual es el Estado de las correas?',
+    options: [
+        { body: 'Buen Estado', id: '0' },
+        { body: 'Desgastadas', id: '1' },
+        { body: 'Rota', id: '2' },
+        { body: 'No tiene', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+};
+var securityBellState = {
+    question: '¿Cual es el Estado de las correas?',
+    options: [
+        { body: 'Buen Estado', id: '0' },
+        { body: 'Desgastado', id: '1' },
+        { body: 'Rota', id: '2' },
+        { body: 'No tiene', id: '3' },
+    ],
+    description: 'Seleccione una opción',
+};
+var hornState = {
+    question: '¿Esta funcionando correctamente la bocina?',
+    options: [
+        { body: 'Si', id: '0' },
+        { body: 'No', id: '1' },
+    ],
+    description: 'Seleccione una opción',
+};
+var fireExtinguisherState = {
+    question: '¿Esta funcionando correctamente el extinguidor y esta Sujetado ?',
+    options: [
+        { body: 'Si', id: '0' },
+        { body: 'No', id: '1' },
+    ],
+    description: 'Seleccione una opción',
+};
 
 
 module.exports = {
