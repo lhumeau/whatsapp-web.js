@@ -1,12 +1,12 @@
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
-const { List } = require('../index');
-const enviroment = require('../utils/environment');
+const { List } = require("../index");
+const enviroment = require("../utils/environment");
 var messageIncoming;
 const getNameFromMessage = {
-    notifyName: 'user',
+    notifyName: "user",
 };
-const initialWordsConversationData = require('./initialWordsConversation.json');
+const initialWordsConversationData = require("./initialWordsConversation.json");
 var lastAnswerUser;
 var lastAnswerBot;
 var menu1 = `
@@ -22,8 +22,6 @@ var menu1 = `
         3️⃣ - En Desarrollo.🔧...
 
         `;
-
-
 
 var menu2 = `
         👷‍♀️👷‍♂️ Hola *${getNameFromMessage.notifyName}*
@@ -41,19 +39,19 @@ var menu2 = `
 
 var vehicleList = [
     {
-        title: 'Section title',
+        title: "Section title",
         rows: [
-            { title: 'ListItem1', description: 'desc' },
-            { title: 'Try clicking me (id: test)', id: 'test' },
+            { title: "ListItem1", description: "desc" },
+            { title: "Try clicking me (id: test)", id: "test" },
         ],
     },
 ];
 let vehicleListSection = new List(
-    'List body',
-    'btnText',
+    "List body",
+    "btnText",
     vehicleList,
-    'Custom title',
-    'custom footer, google.com'
+    "Custom title",
+    "custom footer, google.com"
 );
 
 var askfichaMessage = `Favor de indicar la Ficha Con Guiones.
@@ -63,7 +61,7 @@ var askCounterOdometer = `Favor de indicar
                *Horometro/Odometro.*`;
 var regficha;
 var regOdometro;
-var messageRegDataConfirm = '🚀Procesando los datos...';
+var messageRegDataConfirm = "🚀Procesando los datos...";
 var fixValidatorFicha = `
             *👀Lea atentamente lo que se le pide en cada opción y responda adecuadamente.👀*
 
@@ -91,35 +89,34 @@ var fixValidatorOdometer = `
 
 var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
 var storeChatIdValue;
-var chatIdInfo; 
+var chatIdInfo;
 var commentsDailyInspectionReport;
-var dailyInspectionReportVariable = {
-    ficha: String,
-    project: String,
-    engineOilLevel: String,
-    oilTransmisionLevel: String,
-    oilCoolantLevel: String,
-    strapsPhysicalState: String,
-    tiresState: String,
-    spareRubberState: String,
-    VehicleSwitchAndGauges: String,
-    securityBellState: String,
-    hornState: String,
-    fireExtinguisherState: String,
-    hseFirstAidKit: String,
-    hseTriangle: String,
-    hseBallLightning: String,
-    hseReverseWhistle: String,
-    docEnrolment: String,
-    docInsurance: String,
-    docLicense: String,
-    OilorGreaseLeak: String,
-    jackAndWheelWrench: String,
-    tightRubberNuts: String,
-    serviceBreakOperating: String,
-    emergencyBreakOperating: String,
-    comment: String,
-};
+
+var fichaData;
+var projectData;
+var engineOilLeveData;
+var oilTransmisionLevelData;
+var oilCoolantLevelData;
+var strapsPhysicalStateData;
+var tiresStateData;
+var spareRubberStateData;
+var VehicleSwitchAndGaugesData;
+var securityBellStateData;
+var hornStateData;
+var fireExtinguisherStateData;
+var hseFirstAidKitData;
+var hseTriangleData;
+var hseBallLightningData;
+var hseReverseWhistleData;
+var docEnrolmentData;
+var docInsuranceData;
+var docLicenseData;
+var OilorGreaseLeakData;
+var jackAndWheelWrenchData;
+var tightRubberNutsData;
+var serviceBreakOperatingData;
+var emergencyBreakOperatingData;
+var commentData;
 
 module.exports = {
     vehicleList,
@@ -142,6 +139,29 @@ module.exports = {
     getNameFromMessage,
     vehicleListSection,
     commentsDailyInspectionReport,
-    dailyInspectionReportVariable,
-
+    fichaData,
+    projectData,
+    engineOilLeveData,
+    oilTransmisionLevelData,
+    oilCoolantLevelData,
+    strapsPhysicalStateData,
+    tiresStateData,
+    spareRubberStateData,
+    VehicleSwitchAndGaugesData,
+    securityBellStateData,
+    hornStateData,
+    fireExtinguisherStateData,
+    hseFirstAidKitData,
+    hseTriangleData,
+    hseBallLightningData,
+    hseReverseWhistleData,
+    docEnrolmentData,
+    docInsuranceData,
+    docLicenseData,
+    OilorGreaseLeakData,
+    jackAndWheelWrenchData,
+    tightRubberNutsData,
+    serviceBreakOperatingData,
+    emergencyBreakOperatingData,
+    commentData,
 };
