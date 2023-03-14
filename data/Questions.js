@@ -15,12 +15,16 @@ var {
     menu1,
     menu2,
     dailyInspectionReportVariable,
+    ficha,
+    project,
+    nivelAceiteMotor,
     
 } = require('../data/allVariablesFile');
     
 
 const { getNameFromMessage,
 } = require('../data/allVariablesFile');
+
 
 const {
     engineOilLevel,
@@ -48,6 +52,7 @@ const {
     comment,
 } = require('./ButtonsList');
 const { buttonsFactory } = require('../utils/createButtons');
+var generalFormsAnswer = []; 
 
 const question = async function (
     messageIncoming,
@@ -104,8 +109,8 @@ const question = async function (
           lastAnswerBot[0].type == 'list' &&
           lastAnswerBot[0].body == 'Listado de vehiculos livianos'
         ) {
-            dailyInspectionReportVariable.ficha = messageIncoming.body;
-            console.log(dailyInspectionReportVariable);
+            generalFormsAnswer.ficha = messageIncoming.body;
+            console.log(generalFormsAnswer);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -120,8 +125,8 @@ const question = async function (
           lastAnswerBot[0].body == 'Seleccione un proyecto.'
         ) {
         
-            dailyInspectionReportVariable.project = messageIncoming.body;
-            console.log(dailyInspectionReportVariable);
+            generalFormsAnswer.project = messageIncoming.body;
+            console.log(generalFormsAnswer);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -135,8 +140,8 @@ const question = async function (
           lastAnswerBot[0].body == engineOilLevel.body
         ) {
 
-            dailyInspectionReportVariable.engineOilLevel = messageIncoming.body;
-            console.log(dailyInspectionReportVariable);
+            generalFormsAnswer.engineOilLevel = messageIncoming.body;
+            console.log(generalFormsAnswer);
             // Selección en el menu
             return client.sendMessage(messageIncoming.from,buttonsFactory(oilTransmisionLevel));
             // return client.sendMessage(`You've selected ${regFicha}`);
@@ -149,6 +154,7 @@ const question = async function (
             dailyInspectionReportVariable.oilTransmisionLevel =
                      messageIncoming.body;
             console.log(dailyInspectionReportVariable);
+            console.log(`ficha: ${ficha},project: ${project},nivelAceiteMotor: ${nivelAceiteMotor}`);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -491,22 +497,33 @@ const question = async function (
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
         // FIXME
-        if (
+        if (messageIncoming.body == 'Si' || messageIncoming.body == 'Yes' ||
+            messageIncoming.body == 'si' || messageIncoming.body == 'yes'
+            &&
+            lastAnswerBot.length != 0 &&
+            lastAnswerBot[0].body == 'Por favor indique su comentario'
+        ) {
+           
+
+            return client.sendMessage(
+                messageIncoming.from,
+                'Gracias por su comentarios, su reporte ha sido enviado');
+            
+        }
+
+        if ( messageIncoming.body == 'No' || messageIncoming.body == 'no' && 
             lastAnswerBot.length != 0 &&
             lastAnswerBot[0].type == 'chat' &&
             lastAnswerBot[0].body == 'Por favor indique su comentario'
         ) {
-            dailyInspectionReportVariable.comment = messageIncoming.body;
-            console.log(dailyInspectionReportVariable);
+            
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
-                'Por favor indique su comentario'
+                'Su reporte ha sido enviado'
             );
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
-
-
 
         if (
             lastAnswerBot.length != 0 &&

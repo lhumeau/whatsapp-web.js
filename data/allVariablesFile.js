@@ -6,6 +6,7 @@ var messageIncoming;
 const getNameFromMessage = {
     notifyName: 'user',
 };
+
 const initialWordsConversationData = require('./initialWordsConversation.json');
 var lastAnswerUser;
 var lastAnswerBot;
@@ -120,6 +121,9 @@ var dailyInspectionReportVariable = {
     emergencyBreakOperating: String,
     comment: String,
 };
+var ficha;
+var project;
+var nivelAceiteMotor;
 
 module.exports = {
     vehicleList,
@@ -143,5 +147,8 @@ module.exports = {
     vehicleListSection,
     commentsDailyInspectionReport,
     dailyInspectionReportVariable,
+    ficha,
+    project,
+    nivelAceiteMotor,
 
 };
