@@ -134,7 +134,7 @@ var hseReverseWhistle = {
     title: 'Seleccione una opción',
 };
 var docEnrolment =  {
-    body: '¿Tiene Licencia ?',
+    body: '¿Tiene Matricula ?',
     buttons: [
         { body: 'Si', id: '0' },
         { body: 'No', id: '1' },
@@ -152,7 +152,7 @@ var docInsurance =  {
 };
 
 var docLicense =  {
-    body: '¿Tiene Licencia ?',
+    body: '¿Tiene Licencia de conducir ?',
     buttons: [
         { body: 'Si', id: '0' },
         { body: 'No', id: '1' },
@@ -169,7 +169,7 @@ var OilorGreaseLeak =  {
 };
 
 var jackAndWheelWrench =  {
-    body: '¿Tiene Fuga de aceite o de grasa ?',
+    body: '¿Tiene Gato y llave de rueda?',
     buttons: [
         { body: 'Si', id: '0' },
         { body: 'No', id: '1' },
@@ -205,6 +205,14 @@ var emergencyBreakOperating =  {
 };
 
 
+var comment = {
+    body: '¿Tienes algun comentario?',
+    buttons: [
+        { body: 'Si', id: '0' },
+        { body: 'No', id: '1' },
+    ],
+    title: 'Seleccione una opción',
+};
 
 
 
@@ -233,5 +241,5 @@ module.exports = {
     tightRubberNuts,
     serviceBreakOperating,
     emergencyBreakOperating,
-    
+    comment,
 };
