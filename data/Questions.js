@@ -43,6 +43,7 @@ const {
     tightRubberNuts,
     serviceBreakOperating,
     emergencyBreakOperating,
+    comment,
 } = require('./ButtonsList');
 const { buttonsFactory } = require('../utils/createButtons');
 
@@ -399,15 +400,27 @@ const question = async function (
         }
         if (
             lastAnswerBot.length != 0 &&
-                  messageIncoming.type == 'buttons_response' &&
-                  lastAnswerBot[0].type == 'chat' &&
-                  lastAnswerBot[0].body == emergencyBreakOperating.body
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == emergencyBreakOperating.body
         ) {
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
-                'Algun comentario de la inspección?'
+                buttonsFactory(comment)
             );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == comment.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from, 'Por favor indique su comentario');
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
 
