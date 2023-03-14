@@ -93,6 +93,33 @@ var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
 var storeChatIdValue;
 var chatIdInfo; 
 var commentsDailyInspectionReport;
+var dailyInspectionReportVariable = {
+    ficha: String,
+    project: String,
+    engineOilLevel: String,
+    oilTransmisionLevel: String,
+    oilCoolantLevel: String,
+    strapsPhysicalState: String,
+    tiresState: String,
+    spareRubberState: String,
+    VehicleSwitchAndGauges: String,
+    securityBellState: String,
+    hornState: String,
+    fireExtinguisherState: String,
+    hseFirstAidKit: String,
+    hseTriangle: String,
+    hseBallLightning: String,
+    hseReverseWhistle: String,
+    docEnrolment: String,
+    docInsurance: String,
+    docLicense: String,
+    OilorGreaseLeak: String,
+    jackAndWheelWrench: String,
+    tightRubberNuts: String,
+    serviceBreakOperating: String,
+    emergencyBreakOperating: String,
+    comment: String,
+};
 
 module.exports = {
     vehicleList,
@@ -114,6 +141,7 @@ module.exports = {
     initialWordsConversationData,
     getNameFromMessage,
     vehicleListSection,
-    commentsDailyInspectionReport
+    commentsDailyInspectionReport,
+    dailyInspectionReportVariable,
 
 };

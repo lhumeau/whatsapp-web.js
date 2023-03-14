@@ -14,6 +14,8 @@ var {
     urlPowerautomate,
     menu1,
     menu2,
+    dailyInspectionReportVariable,
+    
 } = require('../data/allVariablesFile');
     
 
@@ -102,7 +104,8 @@ const question = async function (
           lastAnswerBot[0].type == 'list' &&
           lastAnswerBot[0].body == 'Listado de vehiculos livianos'
         ) {
-            regFicha = messageIncoming.body;
+            dailyInspectionReportVariable.ficha = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -116,7 +119,9 @@ const question = async function (
           lastAnswerBot[0].type == 'list' &&
           lastAnswerBot[0].body == 'Seleccione un proyecto.'
         ) {
-            regFicha = messageIncoming.body;
+        
+            dailyInspectionReportVariable.project = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -129,6 +134,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == engineOilLevel.body
         ) {
+
+            dailyInspectionReportVariable.engineOilLevel = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(messageIncoming.from,buttonsFactory(oilTransmisionLevel));
             // return client.sendMessage(`You've selected ${regFicha}`);
@@ -138,6 +146,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == oilTransmisionLevel.body
         ) {
+            dailyInspectionReportVariable.oilTransmisionLevel =
+                     messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -150,6 +161,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == oilCoolantLevel.body
         ) {
+            dailyInspectionReportVariable.oilCoolantLevel =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -162,6 +176,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == strapsPhysicalState.body
         ) {
+            dailyInspectionReportVariable.strapsPhysicalState =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -174,6 +191,8 @@ const question = async function (
            messageIncoming.type == 'buttons_response' &&
            lastAnswerBot[0].body == tiresState.body
         ) {
+            dailyInspectionReportVariable.tiresState = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -186,6 +205,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == spareRubberState.body
         ) {
+            dailyInspectionReportVariable.spareRubberState =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -198,6 +220,9 @@ const question = async function (
           messageIncoming.type == 'buttons_response' &&
           lastAnswerBot[0].body == VehicleSwitchAndGauges.body
         ) {
+            dailyInspectionReportVariable.VehicleSwitchAndGauges =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -211,6 +236,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == securityBellState.body
         ) {
+            dailyInspectionReportVariable.securityBellState =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -225,6 +253,8 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == hornState.body
         ) {
+            dailyInspectionReportVariable.hornState = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -239,6 +269,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == fireExtinguisherState.body
         ) {
+            dailyInspectionReportVariable.fireExtinguisherState =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -252,6 +285,8 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == hseFirstAidKit.body
         ) {
+            dailyInspectionReportVariable.hseFirstAidKit = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -266,6 +301,8 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == hseTriangle.body
         ) {
+            dailyInspectionReportVariable.hseTriangle = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -279,6 +316,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == hseBallLightning.body
         ) {
+            dailyInspectionReportVariable.hseBallLightning =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -293,6 +333,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == hseReverseWhistle.body
         ) {
+            dailyInspectionReportVariable.hseReverseWhistle =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -307,6 +350,8 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == docEnrolment.body
         ) {
+            dailyInspectionReportVariable.docEnrolment = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -321,6 +366,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == docInsurance.body
         ) {
+            dailyInspectionReportVariable.docInsurance =
+                  messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -335,6 +383,8 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == docLicense.body
         ) {
+            dailyInspectionReportVariable.docLicense = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -350,6 +400,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == OilorGreaseLeak.body
         ) {
+            dailyInspectionReportVariable.OilorGreaseLeak =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -364,6 +417,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == jackAndWheelWrench.body
         ) {
+            dailyInspectionReportVariable.jackAndWheelWrench =
+               messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -377,6 +433,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == tightRubberNuts.body
         ) {
+            dailyInspectionReportVariable.tightRubberNuts =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -391,6 +450,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == serviceBreakOperating.body
         ) {
+            dailyInspectionReportVariable.serviceBreakOperating =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -404,6 +466,9 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == emergencyBreakOperating.body
         ) {
+            dailyInspectionReportVariable.emergencyBreakOperating =
+              messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
@@ -418,11 +483,29 @@ const question = async function (
           lastAnswerBot[0].type == 'chat' &&
           lastAnswerBot[0].body == comment.body
         ) {
+            dailyInspectionReportVariable.comment = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from, 'Por favor indique su comentario');
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
+        // FIXME
+        if (
+            lastAnswerBot.length != 0 &&
+            lastAnswerBot[0].type == 'chat' &&
+            lastAnswerBot[0].body == 'Por favor indique su comentario'
+        ) {
+            dailyInspectionReportVariable.comment = messageIncoming.body;
+            console.log(dailyInspectionReportVariable);
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                'Por favor indique su comentario'
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+
 
 
         if (
