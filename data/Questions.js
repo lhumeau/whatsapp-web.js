@@ -1,5 +1,5 @@
 const client = require('../utils/auth');
-const { List } = require('../index');
+const { ListProject, vehicleListMenu1,vehicleListMenu2  } = require('../data/Lists');
 const posdata = require('../utils/postData'); // importamos la libreria // \r\n
 const { ListFactory } = require('../utils/createList');
 var regFicha;
@@ -12,15 +12,39 @@ var {
     fixValidatorFicha,
     fixValidatorOdometer,
     urlPowerautomate,
-    menuOptions,
-    menuFormsOptions,
-    ListProject,
-    VehicleListType
+    menu1,
+    menu2,
+} = require('../data/allVariablesFile');
+    
+
+const { getNameFromMessage,
 } = require('../data/allVariablesFile');
 
-const { getNameFromMessage } = require('../data/allVariablesFile');
-
-const { englineOilLevel } = require('./ButtonsList');
+const {
+    engineOilLevel,
+    oilTransmisionLevel,
+    oilCoolantLevel,
+    strapsPhysicalState,
+    tiresState,
+    spareRubberState,
+    VehicleSwitchAndGauges,
+    securityBellState,
+    hornState,
+    fireExtinguisherState,
+    hseFirstAidKit,
+    hseTriangle,
+    hseBallLightning,
+    hseReverseWhistle,
+    docEnrolment,
+    docInsurance,
+    docLicense,
+    OilorGreaseLeak,
+    jackAndWheelWrench,
+    tightRubberNuts,
+    serviceBreakOperating,
+    emergencyBreakOperating,
+} = require('./ButtonsList');
+const { buttonsFactory } = require('../utils/createButtons');
 
 const question = async function (
     messageIncoming,
@@ -37,72 +61,368 @@ const question = async function (
     if (messageIncoming.fromMe) {
     // Determinar de remitente de mensaje del usuario
         if (lastAnswerBot.length === 0) {
-            return client.sendMessage(messageIncoming.from, menuOptions);
+            return client.sendMessage(messageIncoming.from, menu1);
         }
     } else {
         if (lastAnswerBot.length === 0) {
-            return client.sendMessage(messageIncoming.from, menuOptions);
+            return client.sendMessage(messageIncoming.from, menu1);
         }
         if (hasMatchgreetings) {
-            return client.sendMessage(messageIncoming.from, menuOptions);
+            return client.sendMessage(messageIncoming.from, menu1);
         }
 
-        if (messageIncoming.body == '1' && lastAnswerBot[0].body == menuOptions) {
+        if (messageIncoming.body == '1' && lastAnswerBot[0].body == menu1) {
             // Selección en el menu
-            return client.sendMessage(messageIncoming.from, askfichaMessage);
+            return client.sendMessage(messageIncoming.from, vehicleListMenu1);
         }
-        if (messageIncoming.body == '2' && lastAnswerBot[0].body == menuOptions) {
+        if (messageIncoming.body == '2' && lastAnswerBot[0].body == menu1) {
             // Selección en el menu
 
-            return client.sendMessage(messageIncoming.from, menuFormsOptions);
+            return client.sendMessage(messageIncoming.from, menu2);
         }
         // eslint-disable-next-line no-undef
-        if (messageIncoming.body == '2' && lastAnswerBot[0].body == menuOptions) {
+        if (messageIncoming.body == '2' && lastAnswerBot[0].body == menu1) {
             // Selección en el menu
 
-            return client.sendMessage(messageIncoming.from, menuFormsOptions);
+            return client.sendMessage(messageIncoming.from, menu2);
         }
         if (
             messageIncoming.body == '1' &&
-      lastAnswerBot[0].body == menuFormsOptions
+      lastAnswerBot[0].body == menu2
         ) {
          
-            return client.sendMessage(messageIncoming.from, VehicleListType);
+            return client.sendMessage(messageIncoming.from, vehicleListMenu2);
     
             // Ask for questionary answer
         }
         if (
             lastAnswerBot.length != 0 &&
-      messageIncoming.type == 'list_response' &&
-      lastAnswerBot[0].type == 'list' &&
-      lastAnswerBot[0].body == 'Lista de vehiculos livianos'
+          messageIncoming.type == 'list_response' &&
+          lastAnswerBot[0].type == 'list' &&
+          lastAnswerBot[0].body == 'Listado de vehiculos livianos'
         ) {
             regFicha = messageIncoming.body;
             // Selección en el menu
-            return client.sendMessage(messageIncoming.from, ListProject);
+            return client.sendMessage(
+                messageIncoming.from,
+                ListFactory(ListProject)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'list_response' &&
+          lastAnswerBot[0].type == 'list' &&
+          lastAnswerBot[0].body == 'Seleccione un proyecto.'
+        ) {
+            regFicha = messageIncoming.body;
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(engineOilLevel)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == engineOilLevel.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(messageIncoming.from,buttonsFactory(oilTransmisionLevel));
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == oilTransmisionLevel.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(oilCoolantLevel)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == oilCoolantLevel.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(strapsPhysicalState)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == strapsPhysicalState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(tiresState)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+           messageIncoming.type == 'buttons_response' &&
+           lastAnswerBot[0].body == tiresState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(spareRubberState)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == spareRubberState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(VehicleSwitchAndGauges)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].body == VehicleSwitchAndGauges.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(securityBellState)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == securityBellState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(hornState)
+            );
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
 
         if (
-            lastAnswerBot[0].body == askfichaMessage ||
-      lastAnswerBot[0].body == fixValidatorFicha
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == hornState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(fireExtinguisherState)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == fireExtinguisherState.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(hseFirstAidKit)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == hseFirstAidKit.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(hseTriangle)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == hseTriangle.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(hseBallLightning)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == hseBallLightning.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(hseReverseWhistle)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == hseReverseWhistle.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(docEnrolment)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == docEnrolment.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(docInsurance)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == docInsurance.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(docLicense)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == docLicense.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(OilorGreaseLeak)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+
+
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == OilorGreaseLeak.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(jackAndWheelWrench)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == jackAndWheelWrench.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(tightRubberNuts)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == tightRubberNuts.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(serviceBreakOperating)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'buttons_response' &&
+          lastAnswerBot[0].type == 'chat' &&
+          lastAnswerBot[0].body == serviceBreakOperating.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(emergencyBreakOperating)
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+                  messageIncoming.type == 'buttons_response' &&
+                  lastAnswerBot[0].type == 'chat' &&
+                  lastAnswerBot[0].body == emergencyBreakOperating.body
+        ) {
+            // Selección en el menu
+            return client.sendMessage(
+                messageIncoming.from,
+                'Algun comentario de la inspección?'
+            );
+            // return client.sendMessage(`You've selected ${regFicha}`);
+        }
+
+
+        if (
+            lastAnswerBot.length != 0 &&
+          messageIncoming.type == 'list_response' &&
+          lastAnswerBot[0].type == 'list' &&
+            lastAnswerBot[0].body == 'Lista de vehiculos livianos' 
+         
         ) {
             // Captura respuesta de la  ficha  usuario
             regficha = messageIncoming.body;
-
-            if (
-                /[a-zA-Z]/.test(regficha) == true &&
-        /[0-9]/.test(regficha) == true &&
-        regficha.length == 6 &&
-        /[-]/.test(regficha) == true
-            ) {
-                // validar condición de ficha 2
-                regficha.toUpperCase();
-                regficha.trim();
-            } else {
-                console.log(messageIncoming.body, 'Valor de body en 0 ');
-                return client.sendMessage(messageIncoming.from, fixValidatorFicha);
-            }
+            
+           
 
             return client.sendMessage(messageIncoming.from, askCounterOdometer);
         }

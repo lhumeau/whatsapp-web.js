@@ -2,16 +2,14 @@
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
 const { List } = require('../index');
 const enviroment = require('../utils/environment');
-const projectsJson = require('./projects.json');
 var messageIncoming;
 const getNameFromMessage = {
     notifyName: 'user',
 };
-const jsonFicha = require('./vehiclelist.json'); // importamos la libreria // \r\n
 const initialWordsConversationData = require('./initialWordsConversation.json');
 var lastAnswerUser;
 var lastAnswerBot;
-var menuOptions = `
+var menu1 = `
         👷‍♀️👷‍♂️ Hola *${getNameFromMessage.notifyName}*
         *Lea atentamente lo que se le pide en cada opción y responda adecuadamente.*
 
@@ -25,21 +23,9 @@ var menuOptions = `
 
         `;
 
-var vehicleListJson = [
-    {
-        title: 'Listado de fichas',
-        rows: jsonFicha,
-    },
-];
 
-var VehicleListType = new List(
-    'Lista de vehiculos livianos',
-    'Ver todas las fichas',
-    vehicleListJson,
-    'Por favor seleccione una ficha'
-);
 
-var menuFormsOptions = `
+var menu2 = `
         👷‍♀️👷‍♂️ Hola *${getNameFromMessage.notifyName}*
         *Lea atentamente lo que se le pide en cada opción y responda adecuadamente.*
 
@@ -105,130 +91,8 @@ var fixValidatorOdometer = `
 
 var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
 var storeChatIdValue;
-var chatIdInfo;
-var englineOilLevel = {
-    question: '¿Cual es el nivel de aceite del motor?',
-    options: [{ body: 'Alto', id: '0' },
-        { body: 'Bien', id: '1' },
-        { body: 'Medio', id: '2' },
-        { body: 'Bajo', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-
-};
-
-var oilTransmisionLevel = {
-    question: '¿Cual es el nivel de aceite del Transmision?',
-    options: [
-        { body: 'Alto', id: '0' },
-        { body: 'Bien', id: '1' },
-        { body: 'Medio', id: '2' },
-        { body: 'Bajo', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-};
-
-var oilCoolantLevel = {
-    question: '¿Cual es el nivel de coolant?',
-    options: [
-        { body: 'Alto', id: '0' },
-        { body: 'Bien', id: '1' },
-        { body: 'Medio', id: '2' },
-        { body: 'Bajo', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-};
-var strapsPhysicalState = {
-    question: '¿Cual es el Estado de las correas?',
-    options: [
-        { body: 'Buen Estado', id: '0' },
-        { body: 'Desgastadas', id: '1' },
-        { body: 'Rotas', id: '2' },
-    ],
-    description: 'Seleccione una opción',
-};
-var tiresState = {
-    question: '¿Cual es el Estado de las correas?',
-    options: [
-        { body: 'Buen Estado', id: '0' },
-        { body: 'Desgastadas', id: '1' },
-        { body: 'Rotas', id: '2' },
-    ],
-    description: 'Seleccione una opción',
-};
-
-
-var spareRubberState = {
-    question: '¿Cual es el Estado de la goma',
-    options: [
-        { body: 'Buen Estado', id: '0' },
-        { body: 'Desgastadas', id: '1' },
-        { body: 'Rota', id: '2' },
-        { body: 'No tiene', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-};
-
-var VehicleSwitchAndGauges = {
-    question: '¿Cual es el Estado de las correas?',
-    options: [
-        { body: 'Buen Estado', id: '0' },
-        { body: 'Desgastadas', id: '1' },
-        { body: 'Rota', id: '2' },
-        { body: 'No tiene', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-};
-var securityBellState = {
-    question: '¿Cual es el Estado de las correas?',
-    options: [
-        { body: 'Buen Estado', id: '0' },
-        { body: 'Desgastado', id: '1' },
-        { body: 'Rota', id: '2' },
-        { body: 'No tiene', id: '3' },
-    ],
-    description: 'Seleccione una opción',
-};
-var hornState = {
-    question: '¿Esta funcionando correctamente la bocina?',
-    options: [
-        { body: 'Si', id: '0' },
-        { body: 'No', id: '1' },
-    ],
-    description: 'Seleccione una opción',
-};
-var fireExtinguisherState = {
-    question: '¿Esta funcionando correctamente el extinguidor y esta Sujetado ?',
-    options: [
-        { body: 'Si', id: '0' },
-        { body: 'No', id: '1' },
-    ],
-    description: 'Seleccione una opción',
-};
-
-var ProjectListSection = [
-    {
-        title: 'Listado de fichas',
-        rows: projectsJson,
-    },
-];
-
-
-var ListProject = new List(
-    'Lista de proyectoss',
-    'Ver todos los proyectos',
-    ProjectListSection,
-    'Por favor seleccione un proyecto'
-);
-
-
-
-
-
-
-
-
- 
+var chatIdInfo; 
+var commentsDailyInspectionReport;
 
 module.exports = {
     vehicleList,
@@ -240,9 +104,8 @@ module.exports = {
     fixValidatorFicha,
     fixValidatorOdometer,
     urlPowerautomate,
-    menuOptions,
-    VehicleListType,
-    menuFormsOptions,
+    menu1,
+    menu2,
     messageIncoming,
     storeChatIdValue,
     chatIdInfo,
@@ -251,7 +114,6 @@ module.exports = {
     initialWordsConversationData,
     getNameFromMessage,
     vehicleListSection,
-    englineOilLevel,
-    ListProject,
+    commentsDailyInspectionReport
 
 };
