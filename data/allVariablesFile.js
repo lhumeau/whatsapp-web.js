@@ -59,6 +59,8 @@ var askfichaMessage = `Favor de indicar la Ficha Con Guiones.
              *VL-M45*`;
 var askCounterOdometer = `Favor de indicar 
                *Horometro/Odometro.*`;
+var askCounterOdometerMenu2 = `Favor de indicar 
+               *Horometro/Odometro..*`;
 var regficha;
 var regOdometro;
 var messageRegDataConfirm = '🚀Procesando los datos...';
@@ -87,12 +89,24 @@ var fixValidatorOdometer = `
             - No especifique la unidad si es Kilometraje o Milla.
             ❌`;
 
+var fixValidatorOdometerMenu2 = `
+            *👀Lea atentamente lo que se le pide en cada opción y responda adecuadamente.👀*
+
+            ❌Favor verificar su Odometro nuevamente, asegurese de que su Odometro cumpla con lo siguiente:  
+            - Solo debe contener números.
+            - Los unidad de miles puede separarse con coma.
+            - El separador de decimal es el "." (Punto).
+            - No enviar mensajes en blanco.
+            - Que no tenga espacios delante ni detras.
+            - No debe colocar ni enviar emojis.
+            - No especifique la unidad si es Kilometraje o Milla.-
+            ❌`;
+
 var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
 var urlVehiculosLivianos = enviroment.default.URL_VEHICULOS_LIVIANOS;
 var storeChatIdValue;
 var chatIdInfo;
 var commentsDailyInspectionReport;
-
 var fichaData;
 var projectData;
 var engineOilLeveData;
@@ -169,5 +183,7 @@ module.exports = {
     commentData,
     urlVehiculosLivianos,
     nameData,
-    phoneNumberData
+    phoneNumberData,
+    fixValidatorOdometerMenu2,
+    askCounterOdometerMenu2,
 };

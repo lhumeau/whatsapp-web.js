@@ -46,6 +46,8 @@ var {
     urlVehiculosLivianos,
     phoneNumberData,
     nameData,
+    fixValidatorOdometerMenu2,
+    askCounterOdometerMenu2,
 } = require('../data/allVariablesFile');
 
 const { getNameFromMessage } = require('../data/allVariablesFile');
@@ -144,10 +146,48 @@ const question = async function (
             // Selección en el menu
             return client.sendMessage(
                 messageIncoming.from,
-                buttonsFactory(engineOilLevel)
+                askCounterOdometerMenu2
             );
             // return client.sendMessage(`You've selected ${regFicha}`);
         }
+
+        if (
+            lastAnswerBot.length != 0 &&
+            lastAnswerBot[0].body == askCounterOdometerMenu2
+        ) {
+            /// Captura de respuesta de Odometro/Horometro de usuario.
+            regOdometro = messageIncoming.body;
+            if (/[a-zA-Z]/.test(regOdometro)) {
+                return client.sendMessage(
+                    messageIncoming.from,
+                    fixValidatorOdometerMenu2
+                );
+            }
+            regOdometro = regOdometro.replace(/[^0-9.]+/g, ''); //Allow number incluid floating number
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(engineOilLevel)
+            );
+        }
+        if (
+            lastAnswerBot.length != 0 &&
+            lastAnswerBot[0].body == fixValidatorOdometerMenu2
+        ) {
+            /// Captura de respuesta de Odometro/Horometro de usuario.
+            regOdometro = messageIncoming.body;
+            if (/[a-zA-Z]/.test(regOdometro)) {
+                return client.sendMessage(
+                    messageIncoming.from,
+                    fixValidatorOdometerMenu2
+                );
+            }
+            regOdometro = regOdometro.replace(/[^0-9.]+/g, ''); //Allow number incluid floating number
+            return client.sendMessage(
+                messageIncoming.from,
+                buttonsFactory(engineOilLevel)
+            );
+        }
+
         if (
             lastAnswerBot.length != 0 &&
             messageIncoming.type == 'buttons_response' &&
@@ -499,7 +539,8 @@ const question = async function (
                 let data = {
                     fichaData: fichaData,
                     projectData: projectData,
-                    engineOilLeveData,
+                    regOdometro: regOdometro,
+                    engineOilLeveData: engineOilLeveData,
                     oilTransmisionLevelData: oilTransmisionLevelData,
                     oilCoolantLevelData: oilCoolantLevelData,
                     strapsPhysicalStateData: strapsPhysicalStateData,
@@ -541,6 +582,8 @@ const question = async function (
                              *${fichaData}*
                             Proyecto:
                              *${projectData}*
+                            Odometro/Kilometraje:
+                             *${regOdometro}*
                             Nivel de aceite de motor:
                              *${engineOilLeveData}*
                             nivel de aceite de transmision:
@@ -627,7 +670,8 @@ const question = async function (
         let data = {
             fichaData: fichaData,
             projectData: projectData,
-            engineOilLeveData,
+            regOdometro: regOdometro,
+            engineOilLeveData: engineOilLeveData,
             oilTransmisionLevelData: oilTransmisionLevelData,
             oilCoolantLevelData: oilCoolantLevelData,
             strapsPhysicalStateData: strapsPhysicalStateData,
@@ -668,6 +712,8 @@ const question = async function (
                              *${fichaData}*
                             Proyecto:
                              *${projectData}*
+                             Odometro/Kilometraje:
+                             *${regOdometro}*
                             Nivel de aceite de motor:
                              *${engineOilLeveData}*
                             nivel de aceite de transmision:
