@@ -7,6 +7,13 @@ It uses Puppeteer to run a real instance of Whatsapp Web to avoid getting blocke
 
 **NOTE:** I can't guarantee you will not be blocked by using this method, although it has worked for me. WhatsApp does not allow bots or unofficial clients on their platform, so this shouldn't be considered totally safe.
 
+##Project enviroment Var must be create.
+First Menu Link you have sent a json file to those link for the project to work.
+
+URL_PATH:
+Menu 1 Option 1
+URL_VEHICULOS_LIVIANOS
+Menu 2 Option 1
 ## Quick Links
 
 * [Guide / Getting Started](https://wwebjs.dev/guide) _(work in progress)_
