@@ -1,12 +1,12 @@
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
 // 👷‍♀️👷‍♂️ Hola *${messageIncoming._data.notifyName}*,
-const { List } = require("../index");
-const enviroment = require("../utils/environment");
+const { List } = require('../index');
+const enviroment = require('../utils/environment');
 var messageIncoming;
 const getNameFromMessage = {
-    notifyName: "user",
+    notifyName: 'user',
 };
-const initialWordsConversationData = require("./initialWordsConversation.json");
+const initialWordsConversationData = require('./initialWordsConversation.json');
 var lastAnswerUser;
 var lastAnswerBot;
 var menu1 = `
@@ -39,19 +39,19 @@ var menu2 = `
 
 var vehicleList = [
     {
-        title: "Section title",
+        title: 'Section title',
         rows: [
-            { title: "ListItem1", description: "desc" },
-            { title: "Try clicking me (id: test)", id: "test" },
+            { title: 'ListItem1', description: 'desc' },
+            { title: 'Try clicking me (id: test)', id: 'test' },
         ],
     },
 ];
 let vehicleListSection = new List(
-    "List body",
-    "btnText",
+    'List body',
+    'btnText',
     vehicleList,
-    "Custom title",
-    "custom footer, google.com"
+    'Custom title',
+    'custom footer, google.com'
 );
 
 var askfichaMessage = `Favor de indicar la Ficha Con Guiones.
@@ -61,7 +61,7 @@ var askCounterOdometer = `Favor de indicar
                *Horometro/Odometro.*`;
 var regficha;
 var regOdometro;
-var messageRegDataConfirm = "🚀Procesando los datos...";
+var messageRegDataConfirm = '🚀Procesando los datos...';
 var fixValidatorFicha = `
             *👀Lea atentamente lo que se le pide en cada opción y responda adecuadamente.👀*
 
@@ -88,6 +88,7 @@ var fixValidatorOdometer = `
             ❌`;
 
 var urlPowerautomate = enviroment.default.URL_POWERAUTOMATE;
+var urlVehiculosLivianos = enviroment.default.URL_VEHICULOS_LIVIANOS;
 var storeChatIdValue;
 var chatIdInfo;
 var commentsDailyInspectionReport;
@@ -117,6 +118,8 @@ var tightRubberNutsData;
 var serviceBreakOperatingData;
 var emergencyBreakOperatingData;
 var commentData;
+var phoneNumberData;
+var nameData;
 
 module.exports = {
     vehicleList,
@@ -164,4 +167,7 @@ module.exports = {
     serviceBreakOperatingData,
     emergencyBreakOperatingData,
     commentData,
+    urlVehiculosLivianos,
+    nameData,
+    phoneNumberData
 };
