@@ -586,7 +586,7 @@ const question = async function (
                             Freno de Emergencia:
                              *${emergencyBreakOperatingData}*
                             Comentario:
-                             *${commentData}*
+                             *${data.commentData}*
                              Nombre:
                              *${messageIncoming._data.notifyName}*,
                             Numero:
@@ -614,7 +614,6 @@ const question = async function (
              
             
         }
-
             
     }
             
