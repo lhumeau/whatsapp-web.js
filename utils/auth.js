@@ -3,6 +3,11 @@ const qrcode = require('qrcode-terminal'); // importamos la libreria // \r\n
 
 const client = new Client({
     authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless: true,
+        executablePath: '/bin/chromium-browser',
+        args: ['--no-sandbox'],
+    },
 });
 
 client.on('loading_screen', (percent, message) => {
