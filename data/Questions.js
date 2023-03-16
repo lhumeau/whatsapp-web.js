@@ -1,4 +1,4 @@
-const client = require('../utils/auth');
+//const client = require('../utils/auth');
 const {
     ListProject,
     vehicleListMenu1,
@@ -6,14 +6,13 @@ const {
 } = require('../data/Lists');
 const posdata = require('../utils/postData'); // importamos la libreria // \r\n
 const { ListFactory } = require('../utils/createList');
-var regFicha;
 var {
-    askfichaMessage,
+    
     askCounterOdometer,
     regficha,
     regOdometro,
     messageRegDataConfirm,
-    fixValidatorFicha,
+    
     fixValidatorOdometer,
     urlPowerautomate,
     menu1,
@@ -44,8 +43,6 @@ var {
     emergencyBreakOperatingData,
     commentData,
     urlVehiculosLivianos,
-    phoneNumberData,
-    nameData,
     fixValidatorOdometerMenu2,
     askCounterOdometerMenu2,
 } = require('../data/allVariablesFile');
@@ -84,7 +81,8 @@ const question = async function (
     lastAnswerBot,
     lastAnswerUser,
     hasMatchgreetings,
-    chatIdInfo
+    chatIdInfo,
+    client
 ) {
     getNameFromMessage.notifyName = messageIncoming._data.notifyName;
 

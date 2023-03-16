@@ -1,4 +1,7 @@
-const client = require('./utils/auth');
+const { client,
+  
+} = require('./utils/auth');
+
 const accionar = require('./accionar'); // importamos la libreria // \r\n
 var {
     storeChatIdValue,
@@ -12,7 +15,6 @@ var {
 
 const questions = require('./data/Questions');
 
-client.initialize();
 
 client.on('message', async (msg) => {
     messageIncoming = await msg;
@@ -35,9 +37,14 @@ client.on('message', async (msg) => {
             lastAnswerUser,
             hasMatchgreetings,
             chatIdInfo,
+            client,
             
             
         );
     };
     callQuestion();
+
+
+
 });
+
