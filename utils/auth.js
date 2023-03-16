@@ -43,13 +43,22 @@ app.get('/', (req, res) => {
 });
 
 const client = new Client({
-    authStrategy: new LocalAuth(),
     restartOnAuthFail: true,
-    // puppeteer: {
-    //     headless: true,
-    //     executablePath: '/bin/chromium-browser',
-    //     args: ['--no-sandbox'],
-    // },
+    puppeteer: {
+        headless: true,
+        executablePath: '/bin/chromium-browser',
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process', // <- this one doesn't works in Windows
+            '--disable-gpu',
+        ],
+    },
+    authStrategy: new LocalAuth(),
 });
 
 
